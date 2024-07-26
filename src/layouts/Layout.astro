@@ -9,12 +9,16 @@ import Navbar from '../components/Navbar.astro'
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+
 		<title>Astro</title>
 	</head>
 	<body>
-		<section class="container">
+		<section class="section">
 			<Navbar/>
-            <slot />
+			<div class="container">
+				<slot />
+			</div>
         </section>
 	</body>
 </html>
