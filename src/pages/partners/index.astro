@@ -1,12 +1,66 @@
 ---
+import PartnerCard from "../../components/PartnerCard.astro";
+import PartnerForm from "../../components/PartnerForm.astro";
 import Layout from "../../layouts/Layout.astro";
+import { partners } from "../../models/schema";
+import { db } from "../../utils/db";
 const pageTitle= "Partners | AstroLoyalty"
+
+// if (Astro.request.method === 'POST') {
+//   const data = await Astro.request.formData();
+//   const name = data.get('name');
+//   const description = data.get('description');
+//   await db.insert(partners).values({
+//     name: name as string,
+//     description: description as string
+//   });
+// }
+
+// Logic for the form to add partners to the database
+const errors = { "name" : "", "description": "" }
+if (Astro.request.method === 'POST') {
+	try {
+		const data = await Astro.request.formData()
+		const name = data.get('name')
+		const description = data.get('description')
+		if (!name || typeof name !== "string" || name.length < 1 ) {
+			errors.name += "Please enter a name. ";
+		}
+		if (!description || typeof description !== "string" || description.length < 1 ) {
+			errors.description += "Please enter a description. ";
+		}
+		const hasErrors = Object.values(errors).some(msg => msg)
+		if (!hasErrors) {
+			await db.insert(partners).values({
+				name: name as string,
+				description: description as string,
+				
+			});
+		// return Astro.redirect("/partners");
+		}
+		} catch (error) {
+			if (error instanceof Error) {
+				// console.log(error)
+				console.error(error.message);
+			}
+		}
+	
+}
+
+const partnersList = await db.query.partners.findMany()
 
 ---
 <Layout title={pageTitle}>
 	<div>
 		<h1 class="title">Partners</h1>
-		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, ut quas? Cupiditate, accusantium. Quod, deleniti alias. Vel, labore magnam quas facilis aliquam explicabo doloremque enim.</p>
+		<div>
+			<PartnerForm />
+		</div>
+		<div class="box">
+			<ul>
+				{partnersList.map((partner) => <PartnerCard partner={partner} />)}
+			</ul>
+		</div>	
 	</div>
 </Layout>
 

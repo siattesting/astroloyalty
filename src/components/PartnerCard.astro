@@ -1,0 +1,16 @@
+---
+import type { Partner } from '../models/types'
+
+interface Props {
+    partner: Partner
+}
+const { partner } = Astro.props
+---
+
+<li class="container">
+    <blockquote>
+        <h2 class="subtitle">{partner.name}</h2>
+        <p>{partner.description}</p>
+    </blockquote>
+</li>
+

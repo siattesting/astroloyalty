@@ -2,11 +2,33 @@
 import Layout from "../../layouts/Layout.astro";
 const pageTitle= "Comments | AstroLoyalty"
 
+import Comment from '../../components/Comment.astro';
+import CommentForm from '../../components/CommentForm.astro';
+import { db } from '../../utils/db';
+import { comments } from "../../models/schema";
+
+if (Astro.request.method === 'POST') {
+  const data = await Astro.request.formData();
+  const author = data.get('author');
+  const content = data.get('content');
+  await db.insert(comments).values({
+    author: author as string,
+    content: content as string
+  });
+}
+
+const cms = await db.query.comments.findMany();
+
 ---
 <Layout title={pageTitle}>
-	<div>
-		<h1 class="title">Comments</h1>
-		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime, ut quas? Cupiditate, accusantium. Quod, deleniti alias. Vel, labore magnam quas facilis aliquam explicabo doloremque enim.</p>
-	</div>
+	<main class="my-8 mx-auto max-w-2xl px-4">
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">Comments</h1>
+    <ul class="list-none space-y-4">
+      {cms.map((comment) => <Comment comment={comment} />)}
+    </ul>
+    <!--  Add the comment form -->
+    <CommentForm />
+  </main>
 </Layout>
+
 
