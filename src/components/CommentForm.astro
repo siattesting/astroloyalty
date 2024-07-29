@@ -1,36 +1,20 @@
-<form class="mt-8" method="post">
-    <div class="mb-4">
-      <label for="author" class="block text-gray-700 text-sm font-bold mb-2">
-        Name
-      </label>
-      <input
-        type="text"
-        id="author"
-        name="author"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        placeholder="Your name"
-      />
+
+  <form class="box" method="post">
+    <div class="field">
+        <label for="author" class="label">Author:</label>
+        <div class="control">
+            <input type="text" name="author" class="input" placeholder="Your Name">
+        </div>
     </div>
-  
-    <div class="mb-6">
-      <label for="content" class="block text-gray-700 text-sm font-bold mb-2">
-        Comment
-      </label>
-      <textarea
-        id="content"
-        name="content"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        rows="4"
-        placeholder="Your comment"
-      ></textarea>
+    <div class="field">
+        <label for="content" class="label">Comment:</label>
+        <div class="control">
+            <textarea name="content" id="" class="textarea" placeholder="Your comment"></textarea>
+        </div>
     </div>
-  
-    <div class="flex items-center justify-between">
-      <button
-        type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-        Submit
-      </button>
+    <div class="field">
+        <div class="control">
+            <button type="submit" class="button is-light">Save</button>
+        </div>
     </div>
-  </form>
+</form>

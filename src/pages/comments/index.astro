@@ -23,11 +23,12 @@ const cms = await db.query.comments.findMany();
 <Layout title={pageTitle}>
 	<main class="my-8 mx-auto max-w-2xl px-4">
     <h1 class="text-2xl font-bold text-gray-900 mb-6">Comments</h1>
+    <!--  Add the comment form -->
+    <CommentForm />
     <ul class="list-none space-y-4">
       {cms.map((comment) => <Comment comment={comment} />)}
     </ul>
-    <!--  Add the comment form -->
-    <CommentForm />
+    
   </main>
 </Layout>
 

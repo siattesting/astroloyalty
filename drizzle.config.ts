@@ -4,8 +4,8 @@ export default defineConfig({
   schema: "./src/models/schema.ts",
   out: "./drizzle",
   dbCredentials: {
-    // url: process.env.NODE_ENV === 'production' ? '/data/db.sqlite3' : './db.sqlite3',
-    url: './db.sqlite3'
+    url: process.env.NODE_ENV === 'production' ? '/data/db.sqlite3' : './db.sqlite3',
+    // url: './db.sqlite3'
 
   }
 })

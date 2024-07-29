@@ -8,9 +8,24 @@ const { partner } = Astro.props
 ---
 
 <li class="container">
-    <blockquote>
-        <h2 class="subtitle">{partner.name}</h2>
-        <p>{partner.description}</p>
-    </blockquote>
+    <div class="card">
+    <div class="card-content">
+      <p class="title">
+        {partner.description}
+      </p>
+      <p class="subtitle">{partner.name}</p>
+      <small>{partner.id}</small>
+    </div>
+    <footer class="card-footer">
+        <p class="card-footer-item">
+            <span> Share on <a href="#">Twitter</a> </span>
+          </p>
+      <p class="card-footer-item">
+        <span> Share on <a href="#">Facebook</a> </span>
+      </p>
+    </footer>
+  </div>
 </li>
+
+
 
